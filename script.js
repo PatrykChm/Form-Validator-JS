@@ -29,6 +29,21 @@ const checkEmail = email => {
 	}
 }
 
+const showPopup = () => {
+	const allInputs = document.querySelectorAll('.form-box')
+	let errorCount = 0
+
+	allInputs.forEach(el => {
+		if (el.classList.contains('error')) {
+			errorCount++
+		}
+	})
+	
+	if (errorCount === 0) {
+		popup.classList.add('show-popup')
+	}
+}
+
 const showError = (input, msg) => {
 	const formBox = input.parentElement
 
@@ -67,6 +82,7 @@ sendBtn.addEventListener('click', e => {
 	checkLength(pass, 8)
 	checkPass(pass, pass2)
 	checkEmail(email)
+	showPopup()
 })
 
 clearBtn.addEventListener('click', e => {
