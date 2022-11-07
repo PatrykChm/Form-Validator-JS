@@ -8,8 +8,7 @@ const popup = document.querySelector('.popup')
 
 const checkLength = (input, min) => {
 	if (input.value.length < min) {
-		console.log(input)
-		showError(input, `${input.previousElementSibling.textContent.slice(0, -1)} musi zawierać minimum ${min} znaków.`)
+		showError(input, `${input.previousElementSibling.textContent.slice(0, -1)} musi mieć min. ${min} znaki.`)
 	} else {
 		clearError(input)
 	}
@@ -18,6 +17,15 @@ const checkLength = (input, min) => {
 const checkPass = (pass1, pass2) => {
 	if (pass1.value !== pass2.value) {
 		showError(pass2, 'Hasła do siebie nie pasują!')
+	}
+}
+
+const checkEmail = email => {
+	const reg =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+	if (reg.test(email.value) === false) {
+		showError(email, 'Podaj prawidłowy adres email')
 	}
 }
 
@@ -57,6 +65,7 @@ sendBtn.addEventListener('click', e => {
 	checkLength(username, 3)
 	checkLength(pass, 8)
 	checkPass(pass, pass2)
+	checkEmail(email)
 })
 
 clearBtn.addEventListener('click', e => {
