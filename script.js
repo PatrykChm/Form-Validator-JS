@@ -6,6 +6,15 @@ const sendBtn = document.querySelector('.send')
 const clearBtn = document.querySelector('.clear')
 const popup = document.querySelector('.popup')
 
+const checkLength = (input, min) => {
+	if (input.value.length < min) {
+		console.log(input)
+		showError(input, `${input.previousElementSibling.textContent.slice(0, -1)} musi zawierać minimum ${min} znaków.`)
+	} else {
+		clearError(input)
+	}
+}
+
 const showError = (input, msg) => {
 	const formBox = input.parentElement
 
@@ -39,11 +48,12 @@ const clearInputs = input => {
 sendBtn.addEventListener('click', e => {
 	e.preventDefault()
 	checkInputs([username, pass, pass2, email])
+	checkLength(username, 3)
+	checkLength(pass, 8)
 })
 
 clearBtn.addEventListener('click', e => {
 	e.preventDefault()
 
 	clearInputs([username, pass, pass2, email])
-	
 })
