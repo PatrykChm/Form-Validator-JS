@@ -15,6 +15,12 @@ const checkLength = (input, min) => {
 	}
 }
 
+const checkPass = (pass1, pass2) => {
+	if (pass1.value !== pass2.value) {
+		showError(pass2, 'Hasła do siebie nie pasują!')
+	}
+}
+
 const showError = (input, msg) => {
 	const formBox = input.parentElement
 
@@ -50,6 +56,7 @@ sendBtn.addEventListener('click', e => {
 	checkInputs([username, pass, pass2, email])
 	checkLength(username, 3)
 	checkLength(pass, 8)
+	checkPass(pass, pass2)
 })
 
 clearBtn.addEventListener('click', e => {
