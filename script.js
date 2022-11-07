@@ -56,6 +56,7 @@ const checkInputs = input => {
 const clearInputs = input => {
 	input.forEach(el => {
 		el.value = ''
+		clearError(el)
 	})
 }
 
