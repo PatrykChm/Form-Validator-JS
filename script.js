@@ -6,24 +6,25 @@ const sendBtn = document.querySelector('.send')
 const clearBtn = document.querySelector('.clear')
 const popup = document.querySelector('.popup')
 
+const checkInputs = input => {
+	input.forEach(el => {
+		if(el.value === ""){
+			console.log('błąd');
+		} else{
+			console.log('ok');
+		}
+	})
+}
+
 const clearInputs = input => {
 	input.forEach(el => {
 		el.value = ''
 	})
 }
 
-const showError = (input, msg) => {
-
-}
-
-
-
-
-
-sendBtn.addEventListener('click', (e)=>{
+sendBtn.addEventListener('click', e => {
 	e.preventDefault()
-
-	
+	checkInputs([username, pass, pass2, email])
 })
 
 clearBtn.addEventListener('click', e => {
